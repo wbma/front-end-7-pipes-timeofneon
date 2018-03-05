@@ -1,27 +1,12 @@
-# FE5
+# FE6
+### Task: Create Upload Form 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.5.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. Use your own version of the previous [exercise](w3-login.md) as a starting point and develop it further
+    - or load teachers example from Oma (w3t1.zip)
+1. Create a new component for the upload functionality
+    - add `<input type=file>` and `<button>Upload</button>` to the template
+1. When uploading a file to the API, you need to send [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects) 
+    - in previous exercise you got field values with ngModel. When sending a file, you need to use $event (event object)
+    - in *.component.ts create a method which is called by (change) event of the input element. In the function log event to console to find out how to get the property that has the file. Save the value of that property to a variable of type File. 
+    - create another method to upload the file. create new FormData object, add the file, title and description to the object and send it to the API using MediaService. Of course you need to create a new method to MediaService.
+    
