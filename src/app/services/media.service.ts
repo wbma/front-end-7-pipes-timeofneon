@@ -15,8 +15,6 @@ export class MediaService {
   }
 
   public login() {
-    console.log('uname: ' + this.username);
-    console.log('pwd: ' + this.password);
 
     const body = {
       username: this.username,
@@ -36,16 +34,22 @@ export class MediaService {
     });
   }
 
-  register(user) {
+  public register(user) {
     return this.http.post(this.apiUrl + '/users', user);
   }
 
-  getUserData() {
+  public uploadFormData(formData) {
     const settings = {
-      headers: new HttpHeaders().set('x-access-token',
-        localStorage.getItem('token')),
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
     };
-    return this.http.get(this.apiUrl + '/users/user', settings);
+    return this.http.post(this.apiUrl + '/media', formData, settings);
   }
 
+  public getUserData() {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
+    };
+    console.log('we try to upload now');
+    return this.http.get(this.apiUrl + '/users/user', settings);
+  }
 }
