@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpErrorResponse} from '@angular/common/http';
 import {MediaService} from '../services/media.service';
 import {Router} from '@angular/router';
 
@@ -10,11 +9,14 @@ import {Router} from '@angular/router';
 })
 export class FrontComponent implements OnInit {
 
+  printOut: string;
+  mediaFiles: any;
+
   constructor(public mediaService: MediaService, private router: Router) {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('token') !== null) {
+    /* if (localStorage.getItem('token') !== null) {
       this.mediaService.getUserData().subscribe(response => {
         console.log('Welcome ' + response['full_name']);
       }, (error: HttpErrorResponse) => {
@@ -23,6 +25,14 @@ export class FrontComponent implements OnInit {
       });
     } else {
       this.router.navigate(['login']);
-    }
+    } */
+
+    this.printOut = this.mediaService.test;
+
+    this.mediaService.getMediaFiles(0, 10).subscribe(result => {
+      this.mediaFiles = result;
+    }, err => {
+      console.log(err);
+    });
   }
 }

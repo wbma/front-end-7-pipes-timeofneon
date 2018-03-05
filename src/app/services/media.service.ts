@@ -8,6 +8,7 @@ export class MediaService {
   username: string;
   password: string;
   status: string;
+  test = 'testing';
 
   apiUrl = 'http://media.mw.metropolia.fi/wbma';
 
@@ -52,4 +53,17 @@ export class MediaService {
     console.log('we try to upload now');
     return this.http.get(this.apiUrl + '/users/user', settings);
   }
+
+  getNewFiles() {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.get(this.apiUrl + '/media', settings);
+  }
+
+  getMediaFiles(start: number, amount: number) {
+    return this.http.get(this.apiUrl + '/media?start=' + start + '&limit=' + amount);
+  }
+
 }
